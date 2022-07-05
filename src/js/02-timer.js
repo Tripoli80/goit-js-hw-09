@@ -35,7 +35,7 @@ function startTimer() {
   toggleOnOffButton([refs.btn]);
   const msEnd = endData.getTime();
   setInterval(() => {
-    time = getNormalTime(msEnd - new Date().getTime());
+    const time = getNormalTime(msEnd - new Date().getTime());
     inner(time);
   }, 1000);
 }
