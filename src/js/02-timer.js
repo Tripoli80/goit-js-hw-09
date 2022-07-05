@@ -75,10 +75,10 @@ function toggleOnOffButton(btn, off) {
 function checkDate() {
   if (endData.getTime() < new Date().getTime()) {
     Notify.failure('Please choose a date in the future');
-    toggleOnOffButton([refs.btn], (off = true));
+    toggleOnOffButton([refs.btn], true);
     return;
   }
-  toggleOnOffButton([refs.btn], (off = false));
+  toggleOnOffButton([refs.btn], false);
 }
 
 function formatingTime(a) {
