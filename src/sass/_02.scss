@@ -1,0 +1,31 @@
+.timer {
+  //   display: grid;
+  font-size: 25px;
+  color: rgb(38, 47, 47);
+  border: 2px solid rgb(53, 53, 67);
+  border-radius: 5px;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15);
+  margin: 50px;
+  display: grid;
+  gap: 15px;
+  padding: 20px;
+  align-items: center;
+  grid-template-columns: auto;
+width: 50%;
+  @media screen and (min-width: 768px) {
+    grid-template-columns: auto auto auto auto;
+  }
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  height: 75px;
+  text-align: center;
+}
+.value{
+
+    margin-right: 15px;
+    margin-left: 15px;
+}
