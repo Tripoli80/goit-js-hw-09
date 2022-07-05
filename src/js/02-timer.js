@@ -6,7 +6,7 @@ import flatpickr from 'flatpickr';
 let endData = new Date();
 // Дополнительный импорт стилей
 
-refs = {
+const refs = {
   // dateEnd: document.querySelector('button[data-start]'),
   btn: document.querySelector('button'),
 
