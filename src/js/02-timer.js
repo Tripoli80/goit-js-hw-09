@@ -34,6 +34,7 @@ flatpickr('#datetime-picker', options);
 toggleOnOffButton([refs.btn]);
 
 function startTimer() {
+<<<<<<< HEAD
   toggleOnOffButton([refs.btn, refs.input]);
   const fuDoIt = function () {
     const diffTime = endData.getTime() - new Date().getTime();
@@ -45,6 +46,12 @@ function startTimer() {
       refs.timer.style.color = 'yellow';
       return;
     }
+=======
+  toggleOnOffButton([refs.btn]);
+  const msEnd = endData.getTime();
+  setInterval(() => {
+    const time = getNormalTime(msEnd - new Date().getTime());
+>>>>>>> main
     inner(time);
   };
   
