@@ -9,6 +9,9 @@ let endData = new Date();
 const refs = {
   // dateEnd: document.querySelector('button[data-start]'),
   btn: document.querySelector('button'),
+  input: document.querySelector('input'),
+
+  timer: document.querySelector('.timer'),
 
   d: document.querySelector('span[data-days]'),
   h: document.querySelector('span[data-hours]'),
@@ -26,18 +29,26 @@ const options = {
     checkDate();
   },
 };
-
+refs.btn.addEventListener('click', startTimer);
 flatpickr('#datetime-picker', options);
 toggleOnOffButton([refs.btn]);
 
-refs.btn.addEventListener('click', startTimer);
 function startTimer() {
-  toggleOnOffButton([refs.btn]);
-  const msEnd = endData.getTime();
-  setInterval(() => {
-    time = getNormalTime(msEnd - new Date().getTime());
+  toggleOnOffButton([refs.btn, refs.input]);
+  const fuDoIt = function () {
+    const diffTime = endData.getTime() - new Date().getTime();
+    const time = getNormalTime(diffTime);
+    if (diffTime < 0) {
+      clearTimeout(idInterval);
+      Notify.success('Timer finished sucses');
+      refs.timer.style.backgroundColor = 'green';
+      refs.timer.style.color = 'yellow';
+      return;
+    }
     inner(time);
-  }, 1000);
+  };
+  
+  const idInterval = setInterval(fuDoIt, 1000);
 }
 
 function getNormalTime(t) {
@@ -49,9 +60,9 @@ function getNormalTime(t) {
   };
   return result;
 }
+
 function toggleOnOffButton(btn, off) {
   const arr = [...btn];
-
   if (off === true) {
     arr.map(el => {
       el.setAttribute('disabled', 'disabled');
@@ -72,13 +83,14 @@ function toggleOnOffButton(btn, off) {
     }
   });
 }
+
 function checkDate() {
   if (endData.getTime() < new Date().getTime()) {
     Notify.failure('Please choose a date in the future');
     toggleOnOffButton([refs.btn], true);
     return;
   }
-  toggleOnOffButton([refs.btn], false);
+  toggleOnOffButton([refs.btn, refs.input], false);
 }
 
 function formatingTime(a) {
